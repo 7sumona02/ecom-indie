@@ -13,8 +13,7 @@ const ProductSpecsTable = () => {
 
   return (
     <div className="mt-8 font-mono">
-      <h3 className="text-sm uppercase font-medium mb-4">Product Specifications</h3>
-      <div className="border border-neutral-200 rounded-sm overflow-hidden">
+      <div className="border border-neutral-200 overflow-hidden">
         <table className="w-full">
           <tbody>
             {specs.map((item, index) => (

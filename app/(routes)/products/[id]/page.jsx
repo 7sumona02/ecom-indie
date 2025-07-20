@@ -10,14 +10,22 @@ const getProductData = (id) => {
       id: '1',
       title: 'good tshirt',
       price: '500',
-      description: 'Premium quality tshirt with unique design',
       images: [
         'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0242_x1000.jpg?v=1741098016',
         'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0244_x1000.jpg?v=1741098016',
         'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0246_x1000.jpg?v=1741098016'
       ]
+    },
+    '2': {
+      id: '2',
+      title: 'good pants',
+      price: '1200',
+      images: [
+        'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_18_0196_x1000.jpg?v=1738423343',
+        'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_18_0198_x1000.jpg?v=1738423342',
+        'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_18_0200_x1000.jpg?v=1738423342'
+      ]
     }
-    // Add more products as needed
   }
   return products[id] || null
 }
@@ -30,7 +38,7 @@ export default function ProductPage({ params }) {
   return (
     <div className='h-screen bg-neutral-100 relative'>
       <Navbar />
-      <div className='h-screen bg-neutral-100'>
+      <div className='h-screen bg-neutral-100 pb-10'>
         <div className='grid grid-cols-2 h-full'>
           {/* Scrollable images */}
           <div className='overflow-y-scroll h-full snap-y snap-mandatory scrollbar-hide'>

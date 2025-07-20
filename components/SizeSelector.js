@@ -11,7 +11,7 @@ const SizeSelector = ({ sizes = ['XS','S', 'M', 'L', 'XL'], onSizeChange }) => {
   }
 
   return (
-    <div className="mt-7">
+    <div className="mt-7 w-[20rem]">
       <div className="flex justify-between gap-2">
         {sizes.map((size) => (
           <button

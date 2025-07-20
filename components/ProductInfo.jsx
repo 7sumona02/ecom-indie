@@ -3,15 +3,16 @@ import Link from 'next/link'
 import SizeSelector from './SizeSelector'
 import { useState } from 'react'
 import FAQ from './FAQ'
+import { ArrowLeft } from 'lucide-react'
 
 const faqItems = [
   {
     question: 'Information',
-    answer: 'We use 100% organic cotton for all our clothing items, with recycled materials for our accessories.'
+    answer: 'We use 100% organic cotton for all our clothing items.'
   },
   {
     question: 'Size Guide',
-    answer: 'Domestic orders typically arrive within 3-5 business days. International shipping takes 7-14 business days.'
+    answer: 'Please refer to the size chart below.'
   }
 ]
 
@@ -34,7 +35,8 @@ const ProductInfo = ({ product }) => {
         <div className='w-[24rem]'>
             <FAQ items={faqItems} />
         </div>
-        <div className='flex flex-col gap-10 fixed bottom-16 right-5'>
+        <Link href='/all-products'><div className='mt-10 text-neutral-400 hover:text-black duration-500 transition-colors text-sm cursor-pointer flex items-center gap-1'><ArrowLeft className='size-3' /> Back</div></Link>
+        <div className='flex flex-col gap-10 fixed bottom-20 right-5'>
           {product.images.map((image, index) => (
             <Link key={index} href={`#${index + 1}`}>
               <div className='cursor-pointer w-16 h-16 relative transition-all'>

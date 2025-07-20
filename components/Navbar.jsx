@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import ButtonHoverUnderLine from './ButtonHover'
+import CartItem from './CartItem'
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -8,6 +9,16 @@ const Navbar = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen)
   }
+
+  const cartItems = true;
+
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-IN', {
+    weekday: 'long', // "Sunday"
+    year: 'numeric', // "2025"
+    month: 'long',   // "July"
+    day: 'numeric'   // "20"
+  });
 
   return (
     <>
@@ -22,22 +33,25 @@ const Navbar = () => {
       {/* Cart Sidebar */}
       <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="p-4 h-full flex flex-col">
-          <div className="flex justify-between items-center border-b pb-4">
-            <h2 className="text-lg font-bold">Your Cart</h2>
+          <div className="flex justify-between items-center pb-6">
+            <h2 className="text-sm font-mono text-black uppercase tracking-tight">{formattedDate}</h2>
             <button 
               onClick={toggleCart}
-              className="text-gray-500 hover:text-black focus:outline-none"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <img src='/close.svg' alt='close' className='size-4.5' />
             </button>
           </div>
           
-          {/* Cart content goes here */}
           <div className="flex-grow overflow-y-auto py-4">
-            {/* Your cart items would be rendered here */}
-            <p className="text-gray-500 text-center py-8">Your cart is empty</p>
+            {/* <p className="text-gray-500 text-center py-8">Your cart is empty</p> */}
+            {!cartItems ? (
+              <p className="text-gray-500 text-center py-8">Your cart is empty</p>
+            ):(
+              <div className='flex flex-col gap-6'>
+                <CartItem title='sexy tshirt' size={'M'} price={'500'} />
+                <CartItem title='sexy pants' size={'S'} price={'1000'} />
+              </div>
+            )}
           </div>
           
           <div className="border-t pt-4">

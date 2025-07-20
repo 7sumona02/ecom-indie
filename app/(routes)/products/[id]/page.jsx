@@ -8,7 +8,7 @@ const getProductData = (id) => {
   const products = {
     '1': {
       id: '1',
-      title: 'sexy tshirt',
+      title: 'good tshirt',
       price: '500',
       description: 'Premium quality tshirt with unique design',
       images: [

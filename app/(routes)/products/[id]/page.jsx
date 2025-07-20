@@ -1,0 +1,54 @@
+// app/products/[id]/page.js
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
+import ProductInfo from '@/components/ProductInfo'
+
+// This would come from your database/API
+const getProductData = (id) => {
+  const products = {
+    '1': {
+      id: '1',
+      title: 'sexy tshirt',
+      price: '500',
+      description: 'Premium quality tshirt with unique design',
+      images: [
+        'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0242_x1000.jpg?v=1741098016',
+        'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0244_x1000.jpg?v=1741098016',
+        'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0246_x1000.jpg?v=1741098016'
+      ]
+    }
+    // Add more products as needed
+  }
+  return products[id] || null
+}
+
+export default function ProductPage({ params }) {
+  const product = getProductData(params.id)
+
+  if (!product) return <div>Product not found</div>
+
+  return (
+    <div className='h-screen bg-neutral-100 relative'>
+      <Navbar />
+      <div className='h-screen bg-neutral-100'>
+        <div className='grid grid-cols-2 h-full'>
+          {/* Scrollable images */}
+          <div className='overflow-y-scroll h-full snap-y snap-mandatory scrollbar-hide'>
+            {product.images.map((image, index) => (
+              <div 
+                key={index} 
+                id={`${index + 1}`}
+                className='w-full h-screen snap-start'
+                style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover' }}
+              />
+            ))}
+          </div>
+          
+          {/* Product info */}
+          <ProductInfo product={product} imageCount={product.images.length} />
+        </div>
+      </div>
+      <Footer />
+    </div>
+  )
+}

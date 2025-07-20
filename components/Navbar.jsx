@@ -2,12 +2,13 @@
 import React, { useState } from 'react'
 import ButtonHoverUnderLine from './ButtonHover'
 import CartItem from './CartItem'
+import Link from 'next/link'
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [cartItems, setCartItems] = useState([
-    { id: 1, imgUrl: 'https://nomennescio.fi/cdn/shop/files/Nomen_Nescio_444C_Raglan_Blouse_1_1_561f88e4-6fbb-4623-b3b2-ee313e198f0c_3000x.jpg?v=1743520011', title: 'sexy tshirt', size: 'M', price: 500, quantity: 1 },
-    { id: 2, imgUrl: 'https://nomennescio.fi/cdn/shop/files/Nomen_Nescio_407_Standard_T-Shirt_1_1_e61e3f28-6b81-449c-a876-3003dd2645cf_3000x.jpg?v=1752232080', title: 'juicy pants', size: 'XXL', price: 1200, quantity: 1 }
+    { id: 1, imgUrl: 'https://nomennescio.fi/cdn/shop/files/Nomen_Nescio_444C_Raglan_Blouse_1_1_561f88e4-6fbb-4623-b3b2-ee313e198f0c_3000x.jpg?v=1743520011', title: 'good tshirt', size: 'M', price: 500, quantity: 1 },
+    { id: 2, imgUrl: 'https://nomennescio.fi/cdn/shop/files/Nomen_Nescio_407_Standard_T-Shirt_1_1_e61e3f28-6b81-449c-a876-3003dd2645cf_3000x.jpg?v=1752232080', title: 'good pants', size: 'XXL', price: 1200, quantity: 1 }
   ])
 
   const toggleCart = () => {
@@ -39,9 +40,9 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='font-mono w-screen h-16 flex justify-between items-center px-10 text-sm text-black font-medium'>
-        <div className='cursor-pointer'><ButtonHoverUnderLine title={'YEEZY'} /></div>
-        <div className='cursor-pointer'><ButtonHoverUnderLine title={'All products'} /></div>
+      <div className='font-mono bg-neutral-100 z-50 w-screen h-16 flex justify-between items-center px-10 text-sm text-black font-medium'>
+        <Link className='cursor-pointer' href='/'><div><ButtonHoverUnderLine title={'YEEZY'} /></div></Link>
+        <Link className='cursor-pointer' href='/all-products'><div><ButtonHoverUnderLine title={'All products'} /></div></Link>
         <div className='cursor-pointer' onClick={toggleCart}>
           <ButtonHoverUnderLine title={'Cart'} />
         </div>

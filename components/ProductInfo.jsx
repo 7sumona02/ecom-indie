@@ -19,7 +19,7 @@ const faqItems = [
 const ProductInfo = ({ product }) => {
     const [selectedSize, setSelectedSize] = useState(null)
   return (
-    <div className='h-full p-8 flex pl-[2rem] pt-[10rem] relative'>
+    <div className='h-full p-8 flex justify-center pt-[10rem] relative'>
       <div className='text-black'>
         <div className='w-[20rem] flex justify-between items-end text-base'>
             <h1 className='capitalize'>{product.title}</h1>
@@ -36,7 +36,7 @@ const ProductInfo = ({ product }) => {
             <FAQ items={faqItems} />
         </div>
         <Link href='/all-products'><div className='mt-10 text-neutral-400 hover:text-black duration-500 transition-colors text-sm cursor-pointer flex items-center gap-1'><ArrowLeft className='size-3' /> Back</div></Link>
-        <div className='flex flex-col gap-10 fixed bottom-20 right-5'>
+        <div className='flex flex-col gap-6 fixed bottom-20 right-5'>
           {product.images.map((image, index) => (
             <Link key={index} href={`#${index + 1}`}>
               <div className='cursor-pointer w-16 h-16 relative transition-all'>

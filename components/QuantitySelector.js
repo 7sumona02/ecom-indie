@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const QuantitySelector = ({ initialQuantity = 1, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(initialQuantity)

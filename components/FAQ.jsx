@@ -1,4 +1,3 @@
-// components/FAQ.js
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence, easeInOut } from 'framer-motion'

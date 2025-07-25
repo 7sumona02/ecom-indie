@@ -1,4 +1,3 @@
-// components/ProductSpecsTable.js
 const ProductSpecsTable = () => {
   const specs = [
     { attribute: 'Material', value: '100% Organic Cotton' },

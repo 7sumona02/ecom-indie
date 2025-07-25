@@ -1,9 +1,6 @@
-// app/products/[id]/page.js
-import Footer from '../_components/Footer'
-import Navbar from '../_components/Navbar'
-import ProductInfo from '../_components/ProductInfo'
+import Navbar from "@/components/Navbar"
+import ProductInfo from "@/components/ProductInfo"
 
-// This would come from your database/API
 const getProductData = (id) => {
   const products = {
     '1': {

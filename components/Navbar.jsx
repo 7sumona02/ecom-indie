@@ -1,42 +1,68 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ButtonHoverUnderLine from './ButtonHover'
 import CartItem from './CartItem'
 import Link from 'next/link'
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
-  const [cartItems, setCartItems] = useState([
-    { id: 1, imgUrl: 'https://nomennescio.fi/cdn/shop/files/Nomen_Nescio_444C_Raglan_Blouse_1_1_561f88e4-6fbb-4623-b3b2-ee313e198f0c_3000x.jpg?v=1743520011', title: 'good tshirt', size: 'M', price: 500, quantity: 1 },
-    { id: 2, imgUrl: 'https://nomennescio.fi/cdn/shop/files/Nomen_Nescio_407_Standard_T-Shirt_1_1_e61e3f28-6b81-449c-a876-3003dd2645cf_3000x.jpg?v=1752232080', title: 'good pants', size: 'XXL', price: 1200, quantity: 1 }
-  ])
+  const [cartItems, setCartItems] = useState([])
+
+  // Initialize cart and set up event listener
+  useEffect(() => {
+    // Load initial cart items
+    const loadCartItems = () => {
+      if (typeof window !== 'undefined') {
+        const items = JSON.parse(localStorage.getItem('cartItems')) || []
+        setCartItems(items)
+      }
+    }
+
+    // Handle cart update events
+    const handleCartUpdate = () => {
+      loadCartItems()
+    }
+
+    loadCartItems()
+    window.addEventListener('cartUpdated', handleCartUpdate)
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate)
+    }
+  }, [])
+
+  // Persist cart changes to localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined' && cartItems.length >= 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems))
+    }
+  }, [cartItems])
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen)
   }
 
-  // Calculate total amount
   const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
 
-  // Handle quantity changes
   const handleQuantityChange = (id, newQuantity) => {
-    setCartItems(cartItems.map(item => 
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    ))
+    const updatedItems = cartItems.map(item => 
+      item.id === id ? { ...item, quantity: Math.max(1, newQuantity) } : item
+    )
+    setCartItems(updatedItems)
   }
 
-  // Handle item removal
   const handleRemoveItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id))
+    const updatedItems = cartItems.filter(item => item.id !== id)
+    setCartItems(updatedItems)
   }
 
-  const today = new Date();
+  const today = new Date()
   const formattedDate = today.toLocaleDateString('en-IN', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  });
+  })
 
   return (
     <>
@@ -65,7 +91,7 @@ const Navbar = () => {
               <div className='flex flex-col gap-4'>
                 {cartItems.map(item => (
                   <CartItem 
-                    key={item.id}
+                    key={`${item.id}-${item.size}`}
                     imgUrl={item.imgUrl}
                     title={item.title}
                     size={item.size}
@@ -80,12 +106,12 @@ const Navbar = () => {
           </div>
           
           <div className="pt-4 border-t">
-            <div className="flex justify-between font-mono text-sm mb-4">
+            <div className="flex justify-between font-mono text-sm mb-4 text-black">
               <span>Total</span>
-              <span>$ {totalAmount}</span>
+              <span>$ {totalAmount.toFixed(2)}</span>
             </div>
             <button className="w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors font-mono text-sm">
-              Buy now $ {totalAmount}
+              Buy now $ {totalAmount.toFixed(2)}
             </button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import QuantitySelector from '../app/(routes)/all-products/_components/QuantitySelector'
+import QuantitySelector from '@/components/QuantitySelector'
 
 const CartItem = ({ imgUrl, title, size, price, onRemove, onQuantityChange }) => {
   return (

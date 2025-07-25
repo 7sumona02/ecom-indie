@@ -13,7 +13,7 @@ const generateUUID = () => {
 }
 
 const ProductCard = ({ 
-  id, // Generate random UUID if no slug provided
+  id, 
   title = 'good tshirt',
   price = '500',
   images = [

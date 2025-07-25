@@ -1,8 +1,8 @@
 'use client'
 import Link from 'next/link'
-import SizeSelector from './SizeSelector'
+import SizeSelector from '../../../../components/SizeSelector'
 import { useState } from 'react'
-import FAQ from './FAQ'
+import FAQ from '../../../../components/FAQ'
 import { ArrowLeft } from 'lucide-react'
 
 const faqItems = [
@@ -36,7 +36,7 @@ const ProductInfo = ({ product }) => {
             <FAQ items={faqItems} />
         </div>
         <Link href='/all-products'><div className='mt-10 text-neutral-400 hover:text-black duration-500 transition-colors text-sm cursor-pointer flex items-center gap-1'><ArrowLeft className='size-3' /> Back</div></Link>
-        <div className='flex flex-col gap-6 fixed bottom-20 right-5'>
+        <div className='flex flex-col gap-6 fixed bottom-10 right-5'>
           {product.images.map((image, index) => (
             <Link key={index} href={`#${index + 1}`}>
               <div className='cursor-pointer w-16 h-16 relative transition-all'>

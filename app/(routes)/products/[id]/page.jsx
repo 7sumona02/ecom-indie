@@ -1,7 +1,7 @@
 // app/products/[id]/page.js
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
-import ProductInfo from '@/components/ProductInfo'
+import Footer from '../_components/Footer'
+import Navbar from '../_components/Navbar'
+import ProductInfo from '../_components/ProductInfo'
 
 // This would come from your database/API
 const getProductData = (id) => {
@@ -38,8 +38,8 @@ export default function ProductPage({ params }) {
   return (
     <div className='h-screen bg-neutral-100 relative'>
       <Navbar />
-      <div className='h-screen bg-neutral-100 pb-10'>
-        <div className='grid grid-cols-2 h-full'>
+      <div className='h-screen bg-neutral-100'>
+        <div className='grid md:grid-cols-2 grid-cols-1 h-full'>
           {/* Scrollable images */}
           <div className='overflow-y-scroll h-full snap-y snap-mandatory scrollbar-hide'>
             {product.images.map((image, index) => (
@@ -56,7 +56,6 @@ export default function ProductPage({ params }) {
           <ProductInfo product={product} imageCount={product.images.length} />
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

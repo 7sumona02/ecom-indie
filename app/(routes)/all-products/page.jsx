@@ -1,17 +1,17 @@
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
-import ProductCard from '@/components/ProductCard'
+import Footer from './_components/Footer'
+import Navbar from './_components/Navbar'
 import React from 'react'
+import ProductCard from './_components/ProductCard'
 
 const page = () => {
   return (
     <div className='min-h-screen bg-neutral-100'>
         <Navbar />
         <div className='max-w-6xl mx-auto pt-10 pb-40'>
-          <div className='grid grid-cols-4 gap-20'>
+          <div className='grid md:grid-cols-4 grid-cols-1 gap-20'>
             <ProductCard
             id='1'
-            title = 'sexy tshirt'
+            title = 'good tshirt'
             price = '500'
             images = {[
               'https://bernerkuhl.com/cdn/shop/files/240529_BERNER_KUHL_ECOM_22_0242_x1000.jpg?v=1741098016',
